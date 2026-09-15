@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Product Inventory</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Product Inventory</h1>
+
+        <p>Manage your products and stock</p>
+
+    </header>
+
+
+    <main>
+
+        <!-- Dashboard -->
+
+        <section class="dashboard">
+
+            <div class="card">
+
+                <h3>Total Products</h3>
+
+                <p id="totalProducts">0</p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Total Quantity</h3>
+
+                <p id="totalQuantity">0</p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Inventory Value</h3>
+
+                <p id="inventoryValue">₹0</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Add Product -->
+
+        <section class="form-section">
+
+            <h2>Add Product</h2>
+
+            <form id="productForm">
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Product Name"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="category"
+                    placeholder="Category"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="price"
+                    placeholder="Price"
+                    min="0"
+                    step="0.01"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="quantity"
+                    placeholder="Quantity"
+                    min="0"
+                    required
+                >
+
+                <button type="submit">
+                    Add Product
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Products -->
+
+        <section class="products-section">
+
+            <div class="section-header">
+
+                <h2>Products</h2>
+
+                <button onclick="loadProducts()">
+                    Show All
+                </button>
+
+            </div>
+
+
+            <!-- Filters -->
+
+            <div class="filters">
+
+                <input
+                    type="text"
+                    id="categoryFilter"
+                    placeholder="Enter category"
+                >
+
+                <button onclick="filterByCategory()">
+                    Filter Category
+                </button>
+
+                <button onclick="loadLowStock()">
+                    Low Stock
+                </button>
+
+            </div>
+
+
+            <!-- Product List -->
+
+            <div id="productsContainer">
+
+                <p>Loading products...</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Edit Product Modal -->
+
+        <div id="editModal" class="modal">
+
+            <div class="modal-content">
+
+                <span
+                    class="close"
+                    onclick="closeEditModal()">
+                    &times;
+                </span>
+
+                <h2>Edit Product</h2>
+
+                <form id="editForm">
+
+                    <input type="hidden" id="editId">
+
+                    <input
+                        type="text"
+                        id="editName"
+                        placeholder="Product Name"
+                        required
+                    >
+
+                    <input
+                        type="text"
+                        id="editCategory"
+                        placeholder="Category"
+                        required
+                    >
+
+                    <input
+                        type="number"
+                        id="editPrice"
+                        placeholder="Price"
+                        min="0"
+                        step="0.01"
+                        required
+                    >
+
+                    <input
+                        type="number"
+                        id="editQuantity"
+                        placeholder="Quantity"
+                        min="0"
+                        required
+                    >
+
+                    <button type="submit">
+                        Save Changes
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- Update Stock Modal -->
+
+        <div id="stockModal" class="modal">
+
+            <div class="modal-content">
+
+                <span
+                    class="close"
+                    onclick="closeStockModal()">
+                    &times;
+                </span>
+
+                <h2>Update Stock</h2>
+
+                <form id="stockForm">
+
+                    <input type="hidden" id="stockId">
+
+                    <input
+                        type="number"
+                        id="newQuantity"
+                        placeholder="New Quantity"
+                        min="0"
+                        required
+                    >
+
+                    <button type="submit">
+                        Update Stock
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

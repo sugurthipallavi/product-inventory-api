@@ -1,8 +1,13 @@
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response, render_template
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder="frontend",
+    static_folder="frontend",
+    static_url_path=""
+)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = environ.get(
     "DB_URL",
@@ -12,6 +17,9 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 class Product(db.Model):
     __tablename__ = "products"
